@@ -14,3 +14,16 @@ C:\Users\zzzz\Desktop\USER.BOT\USER.BOT\bin\Debug\USER.BOT.exe
 C:\Users\zzzz\Desktop\USER.BOT\USER.BOT\bin\Debug\USER.BOT.pdb
 C:\Users\zzzz\Desktop\USER.BOT\USER.BOT\bin\Debug\Newtonsoft.Json.dll
 C:\Users\zzzz\Desktop\USER.BOT\USER.BOT\obj\x86\Debug\USER.BOT.FormMostPopularPost.resources
+E:\Project uzer.bot(UB)\USER.BOT-main\USER.BOT\USER.BOT\bin\Debug\USER.BOT.exe
+E:\Project uzer.bot(UB)\USER.BOT-main\USER.BOT\USER.BOT\bin\Debug\USER.BOT.pdb
+E:\Project uzer.bot(UB)\USER.BOT-main\USER.BOT\USER.BOT\bin\Debug\Newtonsoft.Json.dll
+E:\Project uzer.bot(UB)\USER.BOT-main\USER.BOT\USER.BOT\obj\x86\Debug\USER.BOT.csprojAssemblyReference.cache
+E:\Project uzer.bot(UB)\USER.BOT-main\USER.BOT\USER.BOT\obj\x86\Debug\USER.BOT.FormMassComment.resources
+E:\Project uzer.bot(UB)\USER.BOT-main\USER.BOT\USER.BOT\obj\x86\Debug\USER.BOT.FormMostPopularPost.resources
+E:\Project uzer.bot(UB)\USER.BOT-main\USER.BOT\USER.BOT\obj\x86\Debug\USER.BOT.mainForm.resources
+E:\Project uzer.bot(UB)\USER.BOT-main\USER.BOT\USER.BOT\obj\x86\Debug\USER.BOT.Properties.Resources.resources
+E:\Project uzer.bot(UB)\USER.BOT-main\USER.BOT\USER.BOT\obj\x86\Debug\USER.BOT.csproj.GenerateResource.cache
+E:\Project uzer.bot(UB)\USER.BOT-main\USER.BOT\USER.BOT\obj\x86\Debug\USER.BOT.csproj.CoreCompileInputs.cache
+E:\Project uzer.bot(UB)\USER.BOT-main\USER.BOT\USER.BOT\obj\x86\Debug\USER.BOT.csproj.CopyComplete
+E:\Project uzer.bot(UB)\USER.BOT-main\USER.BOT\USER.BOT\obj\x86\Debug\USER.BOT.exe
+E:\Project uzer.bot(UB)\USER.BOT-main\USER.BOT\USER.BOT\obj\x86\Debug\USER.BOT.pdb
