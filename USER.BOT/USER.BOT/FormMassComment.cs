@@ -29,7 +29,18 @@ namespace USER.BOT
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string screen_name = textBox1.Text;
+            
+            string screen_name = textBox3.Lines[0];
+            
+            for(int i = 0; i< textBox3.Lines.Length; i = i+1 )
+            {
+                textBox1.Text = textBox3.Lines[i];
+                Thread.Sleep(1000);
+                Application.DoEvents();
+
+            }
+
+
             string[] ID = screen_name.Split(new[] { "https://vk.com/" }, StringSplitOptions.RemoveEmptyEntries);
             string request = "https://api.vk.com/method/users.get?user_ids=" + ID[0] + "&" + access_token + "&v=5.124";
             WebClient clienT = new WebClient();
@@ -46,7 +57,7 @@ namespace USER.BOT
             // label1.Text = AnsweR;
             int Posts = 0;
             // labelFam.Text = wg.response.items[0].text;
-            textBox1.Text = ug.response[0].id.ToString();
+            textBox3.Lines[0] = ug.response[0].id.ToString();
             progressBar1.Value = 0;
             foreach (WallGet.Item item in wg.response.items)
             {
@@ -68,6 +79,7 @@ namespace USER.BOT
                 progressBar1.Value = Posts;
                 
             }
+           
             
             
         }
