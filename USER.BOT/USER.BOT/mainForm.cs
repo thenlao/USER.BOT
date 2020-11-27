@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.Net;
+using System.Threading;
 
 
 namespace USER.BOT
@@ -62,6 +63,9 @@ namespace USER.BOT
                 user_id = ug.response[0].id.ToString();
                 webBrowser1.Hide();
             }
+            
+
+            
         }
 
         private void buttonGetPopularPost_Click(object sender, EventArgs e)
@@ -70,6 +74,14 @@ namespace USER.BOT
             frm.access_token = this.access_token;
             frm.user_id = user_id;
             frm.Show();
+        }
+
+        private void buttonMassComment_Click(object sender, EventArgs e)
+        {
+            FormMassComment frmMC = new FormMassComment();
+            frmMC.access_token = this.access_token;
+            frmMC.user_id = user_id;
+            frmMC.Show();
         }
     }
 }
