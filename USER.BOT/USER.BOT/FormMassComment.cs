@@ -1,4 +1,10 @@
-﻿using System;
+﻿
+
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,6 +35,11 @@ namespace USER.BOT
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Random rnd = new Random();
+            int Number = rnd.Next(1000, 3000);
+            int NumberFC = rnd.Next(10000, 15000);
+
+
             if (textBox2.Text == "")
             {
                 label11.Visible = true;
@@ -77,6 +88,7 @@ namespace USER.BOT
 
                 WallGet wg = JsonConvert.DeserializeObject<WallGet>(Answer);
                 int Posts = 0;
+               
                 textBox3.Lines[i] = ug.response[0].id.ToString();
                 progressBar1.Value = 0;
                 foreach (WallGet.Item item in wg.response.items)
@@ -97,18 +109,41 @@ namespace USER.BOT
                     label8.Text = numericUpDown1.Value.ToString();
                     progressBar1.Maximum = (int)numericUpDown1.Value;
                     progressBar1.Value = Posts;
+                    int Result;
+                    int ost = Math.DivRem(Posts, 9, out Result);
+                    if (Result == 0)
+                    {
+                        Thread.Sleep(NumberFC);
+                        Application.DoEvents();
+                    }
+
 
                 }
 
 
 
-                Thread.Sleep(1000);
+                Thread.Sleep(Number);
                 Application.DoEvents();
+
+                //--------------------
+
+                
+
+                //--------------------
+
+
 
             }
 
 
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+           
+            
         }
     }
 }
