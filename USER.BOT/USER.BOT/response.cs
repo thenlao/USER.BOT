@@ -183,4 +183,37 @@ namespace USER.BOT
         public Response response { get; set; }
     }
 
+
+
+
+
+
+    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
+
+
+    public class Err_main
+    {
+        public Error error { get; set; }
+        public class RequestParam
+        {
+            public string key { get; set; }
+            public string value { get; set; }
+        }
+
+        public class Error
+        {
+            public int error_code { get; set; }
+            public string error_msg { get; set; }
+            public List<RequestParam> request_params { get; set; }
+            public string captcha_sid { get; set; }
+            public string captcha_img { get; set; }
+        }
+    }
+
+
+    /*
+     {"error":{"error_code":14,"error_msg":"Captcha needed","request_params":[{"key":"owner_id","value":"56929156"},{"key":"post_id","value":"799"},{"key":"message","value":"!!"},{"key":"v","value":"5.124"},{"key":"method","value":"wall.createComment"},{"key":"oauth","value":"1"}],"captcha_sid":"400758291635","captcha_img":"https:\/\/api.vk.com\/captcha.php?sid=400758291635&s=1"}}
+     */
+
+
 }

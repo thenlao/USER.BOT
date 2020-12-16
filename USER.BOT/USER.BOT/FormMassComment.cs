@@ -22,6 +22,7 @@ namespace USER.BOT
     {
         public string access_token;
         public string user_id;
+        bool CapthaEnter = false;
 
         public FormMassComment()
         {
@@ -36,9 +37,9 @@ namespace USER.BOT
         private void button1_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            int Number = rnd.Next(1000, 3000);
+            int Number = rnd.Next(3000, 5000);
             int NumberFC = rnd.Next(10000, 15000);
-
+            
 
             if (textBox2.Text == "")
             {
@@ -46,8 +47,12 @@ namespace USER.BOT
                 label11.BackColor = Color.Red;
                 label2.BackColor = Color.Red;
                 textBox2.BackColor = Color.Red;
-                Application.DoEvents();
-                Thread.Sleep(1000);
+                for(int I = 0;I<10;I++)
+                {
+                    Application.DoEvents();
+                    Thread.Sleep(100);
+                }    
+                
                 label11.Visible = false;
                 label11.BackColor = Color.White;
                 label2.BackColor = Color.White;
@@ -101,7 +106,35 @@ namespace USER.BOT
                     string RequeST = "https://api.vk.com/method/wall.createComment?" + "owner_id=" + ug.response[0].id.ToString() + "&post_id=" + item.id + "&message=" + textBox2.Text + "&" + access_token + "&v=5.124";
                     WebClient clieNT = new WebClient();
                     string AnswER = clieNT.DownloadString(RequeST);
-                    Thread.Sleep(1000);
+
+                    textBox4.Text += "\r\n" + AnswER;
+
+          
+                    int NumberII = Number / 100;
+                    for (int I = 0; I < 100; I++)
+                    {
+                        Thread.Sleep(NumberII);
+                    }
+                    //Капча нахоидится где-то ещё в цикле найти это место и исправить(постваить ждалку ввода капчи пользователем)
+                    if (AnswER.Contains("Captcha needed"))
+                    {
+                        Err_main er = JsonConvert.DeserializeObject<Err_main>(AnswER);
+                        pictureBox1.ImageLocation = er.error.captcha_img;
+                        //подождать 
+                        
+                        while(CapthaEnter == false)
+                        {
+                            textBox4.Text +=  " -1000" ;
+                            for (int I = 0;I<10;I++)
+                            {
+                                Thread.Sleep(100);
+                                Application.DoEvents();
+                            }
+                        }
+                        string RequEST = "https://api.vk.com/method/wall.createComment?" + "owner_id=" + ug.response[0].id.ToString() + "&post_id=" + item.id + "&message=" + textBox2.Text + "&captcha_sid=" + er.error.captcha_sid + "&captha_key=" + textBox1.Text + "&" + access_token + "&v=5.124";
+
+
+                    }
 
                     //label1.Text = AnswER;
                     label7.Text = Posts.ToString();
@@ -109,21 +142,40 @@ namespace USER.BOT
                     label8.Text = numericUpDown1.Value.ToString();
                     progressBar1.Maximum = (int)numericUpDown1.Value;
                     progressBar1.Value = Posts;
+
+                   
+
                     int Result;
                     int ost = Math.DivRem(Posts, 9, out Result);
                     if (Result == 0)
                     {
-                        Thread.Sleep(NumberFC);
-                        Application.DoEvents();
-                    }
+                        // label12.Text = AnswER;
+                        textBox4.Text += " " + NumberFC.ToString();
+                        int NumberFCI = NumberFC / 100;
+                       for(int I = 0;I < 100; I++)
+                        {
+                            Application.DoEvents();
+                            Thread.Sleep(NumberFCI);
 
+                        }
+
+                    }
+                 
+                   
+                    Application.DoEvents();
+                }
+                
+                //ждалка между ссылками
+                
+               int NumberI = Number / 100;
+                for(int I = 0;I < 100; I++)
+                {
+                    Thread.Sleep(NumberI);
+                    Application.DoEvents();
 
                 }
+                
 
-
-
-                Thread.Sleep(Number);
-                Application.DoEvents();
 
                 //--------------------
 
@@ -144,6 +196,22 @@ namespace USER.BOT
             
            
             
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+        
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            CapthaEnter = true;
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
