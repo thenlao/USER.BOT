@@ -23,6 +23,8 @@ namespace USER.BOT
         public string access_token;
         public string user_id;
         bool CapthaEnter = false;
+        Random rnd = new Random();
+        
 
         public FormMassComment()
         {
@@ -36,28 +38,31 @@ namespace USER.BOT
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
-            int Number = rnd.Next(3000, 5000);
-            int NumberFC = rnd.Next(10000, 15000);
             
+            int Number;
+            int MoveL;
+
 
             if (textBox2.Text == "")
             {
-                label11.Visible = true;
-                label11.BackColor = Color.Red;
-                label2.BackColor = Color.Red;
-                textBox2.BackColor = Color.Red;
-                for(int I = 0;I<10;I++)
-                {
-                    Application.DoEvents();
-                    Thread.Sleep(100);
-                }    
-                
-                label11.Visible = false;
-                label11.BackColor = Color.White;
-                label2.BackColor = Color.White;
-                textBox2.BackColor = Color.White;
-                return;
+                //label11.Visible = true;
+                //label11.BackColor = Color.Red;
+                //label2.BackColor = Color.Red;
+                //textBox2.BackColor = Color.Red;
+                //for(int I = 0;I<10;I++)
+                //{
+                //    Application.DoEvents();
+                //    Thread.Sleep(100);
+                //}    
+
+                //label11.Visible = false;
+                //label11.BackColor = Color.White;
+                //label2.BackColor = Color.White;
+                //textBox2.BackColor = Color.White;
+                //доделать------------------------------------------------------------------------
+                MoveL = rnd.Next(-1, 1);
+                textBox2.Location = new Point(15 - 1, 347 - 1);
+                Application.DoEvents();
 
             }
             
@@ -75,7 +80,12 @@ namespace USER.BOT
                 //"https://vk.com/id435786543"
                 //"https://vk./com/Id435786543"
                 //"https:" "vk" "comid435786543"
+                //Random Number--------------------------------------------------------------
 
+
+
+               
+              
 
                 string screen_name = textBox3.Lines[i];
                 string[] ID = screen_name.Split(new[] { "https://vk.com/" }, StringSplitOptions.RemoveEmptyEntries);
@@ -109,7 +119,7 @@ namespace USER.BOT
 
                     textBox4.Text += "\r\n" + AnswER;
 
-          
+                    Number = rnd.Next(3000, 5000);
                     int NumberII = Number / 100;
                     for (int I = 0; I < 100; I++)
                     {
@@ -124,7 +134,7 @@ namespace USER.BOT
                         
                         while(CapthaEnter == false)
                         {
-                            textBox4.Text +=  " -1000" ;
+                            textBox4.Text +=  " 1000" ;
                             for (int I = 0;I<10;I++)
                             {
                                 Thread.Sleep(100);
@@ -150,6 +160,7 @@ namespace USER.BOT
                     if (Result == 0)
                     {
                         // label12.Text = AnswER;
+                        int NumberFC = rnd.Next(15000, 20000);
                         textBox4.Text += " " + NumberFC.ToString();
                         int NumberFCI = NumberFC / 100;
                        for(int I = 0;I < 100; I++)
@@ -164,10 +175,11 @@ namespace USER.BOT
                    
                     Application.DoEvents();
                 }
-                
+
                 //ждалка между ссылками
-                
-               int NumberI = Number / 100;
+
+                Number = rnd.Next(3000, 5000);
+                int NumberI = Number / 100;
                 for(int I = 0;I < 100; I++)
                 {
                     Thread.Sleep(NumberI);
@@ -188,7 +200,7 @@ namespace USER.BOT
             }
 
 
-
+            //Application.Exit();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -207,11 +219,71 @@ namespace USER.BOT
         private void button2_Click_1(object sender, EventArgs e)
         {
             CapthaEnter = true;
-        }
+            for(int I = 0; I < 10; I++)
+            {
+                Thread.Sleep(200);
+                
+            }
+            CapthaEnter = false;
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+            if (CapthaEnter == true)
+            {
+                label3.Text = "CapthaEnter - true";
+            }
+            else
+            {
+                label3.Text = "CapthaEnter - false";
+            }
+
+
+
+        }
+         
+
+private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            textBox4.Visible = true;
+            textBox4.Size = new Size(0, 0);
+           
+            Application.DoEvents();
+            double TSW = textBox4.Width;
+            for (int  TSH = textBox4.Size.Height; TSH < 282; TSW = TSW + 6.3, TSH = TSH + 3)
+            {
+                textBox4.Size = new Size((int)TSW, TSH);
+                Thread.Sleep(1);
+                Application.DoEvents();
+            }
+            button4.Visible = true;
+            button3.Enabled = false;
+            
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //textBox4.Visible = false;
+            button4.Visible = false;
+            
+            
+            //int TSW = textBox4.Size.Width;
+            //int TSH = textBox4.Size.Height;
+            for(int TSW = textBox4.Size.Width, TSH = textBox4.Size.Height; TSH > 0; TSW = TSW - 6,TSH = TSH - 3)
+            {
+                textBox4.Size = new Size(TSW, TSH);
+                Thread.Sleep(1);
+                Application.DoEvents();
+
+            }
+            textBox4.Visible = false;
+            button3.Enabled = true;
+           
+
+        }
+
     }
 }
