@@ -23,6 +23,7 @@ namespace USER.BOT
         public string access_token;
         public string user_id;
         bool CapthaEnter = false;
+        bool Stop = false;
         Random rnd = new Random();
         
 
@@ -40,29 +41,39 @@ namespace USER.BOT
         {
             
             int Number;
-            int MoveL;
+            int MoveL1;
+            int MoveL2;
 
 
             if (textBox2.Text == "")
             {
-                //label11.Visible = true;
-                //label11.BackColor = Color.Red;
-                //label2.BackColor = Color.Red;
-                //textBox2.BackColor = Color.Red;
-                //for(int I = 0;I<10;I++)
-                //{
-                //    Application.DoEvents();
-                //    Thread.Sleep(100);
-                //}    
-
-                //label11.Visible = false;
-                //label11.BackColor = Color.White;
-                //label2.BackColor = Color.White;
-                //textBox2.BackColor = Color.White;
-                //доделать------------------------------------------------------------------------
-                MoveL = rnd.Next(-1, 1);
-                textBox2.Location = new Point(15 - 1, 347 - 1);
+                
+                
+               
+                
+                for(int Time = 0; Time < 10; Time++)
+                {
+                    Application.DoEvents();
+                    MoveL1 = rnd.Next(-3, 6);
+                    textBox2.Location = new Point(15 - MoveL1, 347);
+                    Application.DoEvents();
+                    Thread.Sleep(10);
+                    MoveL2 = rnd.Next(-3, 6);
+                    textBox2.Location = new Point(15 + MoveL2, 347);
+                    Application.DoEvents();
+                    MoveL1 = rnd.Next(-3, 6);
+                    textBox2.Location = new Point(15 - MoveL1, 347);
+                    Application.DoEvents();
+                    Thread.Sleep(10);
+                    MoveL2 = rnd.Next(-3, 6);
+                    textBox2.Location = new Point(15 + MoveL2, 347);
+                    Application.DoEvents();
+                    Thread.Sleep(100);
+                    
+                }
+                textBox2.Location = new Point(15, 347);
                 Application.DoEvents();
+                return;
 
             }
             
@@ -124,6 +135,10 @@ namespace USER.BOT
                     for (int I = 0; I < 100; I++)
                     {
                         Thread.Sleep(NumberII);
+                        if (Stop == true)
+                        {
+                            return;
+                        }
                     }
                     //Капча нахоидится где-то ещё в цикле найти это место и исправить(постваить ждалку ввода капчи пользователем)
                     if (AnswER.Contains("Captcha needed"))
@@ -139,6 +154,10 @@ namespace USER.BOT
                             {
                                 Thread.Sleep(100);
                                 Application.DoEvents();
+                                if (Stop == true)
+                                {
+                                    return;
+                                }
                             }
                         }
                         string RequEST = "https://api.vk.com/method/wall.createComment?" + "owner_id=" + ug.response[0].id.ToString() + "&post_id=" + item.id + "&message=" + textBox2.Text + "&captcha_sid=" + er.error.captcha_sid + "&captha_key=" + textBox1.Text + "&" + access_token + "&v=5.124";
@@ -167,6 +186,10 @@ namespace USER.BOT
                         {
                             Application.DoEvents();
                             Thread.Sleep(NumberFCI);
+                            if (Stop == true)
+                            {
+                                return;
+                            }
 
                         }
 
@@ -184,23 +207,31 @@ namespace USER.BOT
                 {
                     Thread.Sleep(NumberI);
                     Application.DoEvents();
+                    if (Stop == true)
+                    {
+                        return;
+                    }
 
                 }
-                
+
+
+
+                //--------------------
+
 
 
                 //--------------------
 
                 
-
-                //--------------------
-
-
+                //Application.Exit();
+                if (Stop == true)
+                {
+                    return;
+                }
 
             }
 
-
-            //Application.Exit();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -285,5 +316,9 @@ private void textBox3_TextChanged(object sender, EventArgs e)
 
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Stop = true;
+        }
     }
 }
