@@ -25,6 +25,9 @@ namespace USER.BOT
         bool CapthaEnter = false;
         bool Stop = false;
         Random rnd = new Random();
+        int time1;
+        bool Commenting = false;
+       
         
 
         public FormMassComment()
@@ -39,10 +42,22 @@ namespace USER.BOT
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            //в time время в секундах
+            time1 = Convert.ToInt32(textBox6.Text);
+
+            //в time время в милисекундах
+            time1 = time1*1000;
+
             int Number;
             int MoveL1;
             int MoveL2;
+            Commenting = true;
+
+            if(Commenting == true)
+            {
+                numericUpDown1.Enabled = false;
+                button1.Enabled = false;
+            }
 
 
             if (textBox2.Text == "")
@@ -73,6 +88,7 @@ namespace USER.BOT
                 }
                 textBox2.Location = new Point(15, 347);
                 Application.DoEvents();
+                on_buttons();
                 return;
 
             }
@@ -130,17 +146,20 @@ namespace USER.BOT
 
                     textBox4.Text += "\r\n" + AnswER;
 
-                    Number = rnd.Next(3000, 5000);
+                    Number = rnd.Next(time1, time1+2000);
                     int NumberII = Number / 100;
                     for (int I = 0; I < 100; I++)
                     {
+
+                        Application.DoEvents();
                         Thread.Sleep(NumberII);
                         if (Stop == true)
                         {
+                            on_buttons();
                             return;
                         }
                     }
-                    //Капча нахоидится где-то ещё в цикле найти это место и исправить(постваить ждалку ввода капчи пользователем)
+                    
                     if (AnswER.Contains("Captcha needed"))
                     {
                         Err_main er = JsonConvert.DeserializeObject<Err_main>(AnswER);
@@ -149,14 +168,16 @@ namespace USER.BOT
                         
                         while(CapthaEnter == false)
                         {
-                            textBox4.Text +=  " 1000" ;
+                            textBox4.Text +=  "Нужно ввести капчу" ;
                             for (int I = 0;I<10;I++)
                             {
                                 Thread.Sleep(100);
                                 Application.DoEvents();
                                 if (Stop == true)
                                 {
+                                    on_buttons();
                                     return;
+                                   
                                 }
                             }
                         }
@@ -188,7 +209,9 @@ namespace USER.BOT
                             Thread.Sleep(NumberFCI);
                             if (Stop == true)
                             {
+                                on_buttons();
                                 return;
+                                
                             }
 
                         }
@@ -200,8 +223,7 @@ namespace USER.BOT
                 }
 
                 //ждалка между ссылками
-
-                Number = rnd.Next(3000, 5000);
+                Number = rnd.Next(time1, time1 + 2000);
                 int NumberI = Number / 100;
                 for(int I = 0;I < 100; I++)
                 {
@@ -209,6 +231,7 @@ namespace USER.BOT
                     Application.DoEvents();
                     if (Stop == true)
                     {
+                        on_buttons();
                         return;
                     }
 
@@ -226,13 +249,23 @@ namespace USER.BOT
                 //Application.Exit();
                 if (Stop == true)
                 {
+                    on_buttons();
                     return;
+                   
                 }
 
             }
 
-            
+            Commenting = false;
+            on_buttons();
         }
+        
+        private void on_buttons()
+        {
+            button1.Enabled = true;
+            numericUpDown1.Enabled = true;
+        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -319,6 +352,18 @@ private void textBox3_TextChanged(object sender, EventArgs e)
         private void button5_Click(object sender, EventArgs e)
         {
             Stop = true;
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //int tm = 1000;
+            //button6.Text = (tm+1000).ToString();
+            //button7.Text = tm.ToString();
         }
     }
 }
