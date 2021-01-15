@@ -42,8 +42,10 @@ namespace USER.BOT
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+                
             //в time время в секундах
-            time1 = Convert.ToInt32(textBox6.Text);
+            time1 = Convert.ToInt32(numericUpDown2.Value);
 
             //в time время в милисекундах
             time1 = time1*1000;
@@ -57,6 +59,9 @@ namespace USER.BOT
             {
                 numericUpDown1.Enabled = false;
                 button1.Enabled = false;
+                numericUpDown2.Enabled = false;
+                label5.Text = "Идёт комментирование...";
+                Application.DoEvents();
             }
 
 
@@ -144,7 +149,7 @@ namespace USER.BOT
                     WebClient clieNT = new WebClient();
                     string AnswER = clieNT.DownloadString(RequeST);
 
-                    textBox4.Text += "\r\n" + AnswER;
+                    textBox4.Text += "Комментарий оставлен успешно!\r\n" + "         " + AnswER;
 
                     Number = rnd.Next(time1, time1+2000);
                     int NumberII = Number / 100;
@@ -257,6 +262,7 @@ namespace USER.BOT
             }
 
             Commenting = false;
+            
             on_buttons();
         }
         
@@ -264,6 +270,10 @@ namespace USER.BOT
         {
             button1.Enabled = true;
             numericUpDown1.Enabled = true;
+            Commenting = false;
+            numericUpDown2.Enabled = true;
+            label5.Text = "Ожидаение...";
+            Application.DoEvents();
         }
 
 
@@ -311,6 +321,7 @@ private void textBox3_TextChanged(object sender, EventArgs e)
 
         private void button3_Click(object sender, EventArgs e)
         {
+            label3.Visible = true;
             textBox4.Visible = true;
             textBox4.Size = new Size(0, 0);
            
