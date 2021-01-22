@@ -50,6 +50,14 @@ namespace USER.BOT
 
             //в time время в милисекундах
             time1 = time1*1000;
+            //for(int I = Convert.ToInt32(numericUpDown2.Value) * 100 + 300; I > 0;I--)
+            //{
+            //    label11.Text = I.ToString();
+            //    Application.DoEvents();
+            //    Thread.Sleep(1);
+            //    Application.DoEvents();
+            //}
+            
 
             int Number;
             int MoveL1;
@@ -160,7 +168,7 @@ namespace USER.BOT
                     {
                         textBox4.Text += answerConsole + "\r\n" + "         " + AnswER;
                     }
-                    Number = rnd.Next(time1, time1+2000);
+                    Number = rnd.Next(time1, time1+3000);
                     int NumberII = Number / 100;
                     for (int I = 0; I < 100; I++)
                     {
@@ -183,8 +191,8 @@ namespace USER.BOT
                         
                         while(CapthaEnter == false)
                         {
-                            answerConsole = "Нужно ввести капчу";
-                            textBox4.Text +=  answerConsole;
+                            answerConsole = AnswER + "Нужно ввести капчу           ";
+                            textBox4.Text += answerConsole;
                             for (int I = 0;I<10;I++)
                             {
                                 Thread.Sleep(100);
@@ -217,7 +225,9 @@ namespace USER.BOT
                     {
                         // label12.Text = AnswER;
                         int NumberFC = rnd.Next(15000, 20000);
-                        textBox4.Text += " " + NumberFC.ToString();
+                        answerConsole = NumberFC.ToString() + "           ";
+                        textBox4.Text = answerConsole;
+                        //textBox4.Text += " " + NumberFC.ToString();
                         int NumberFCI = NumberFC / 100;
                        for(int I = 0;I < 100; I++)
                         {
@@ -239,7 +249,7 @@ namespace USER.BOT
                 }
 
                 //ждалка между ссылками
-                Number = rnd.Next(time1, time1 + 2000);
+                Number = rnd.Next(time1, time1 + 3000);
                 int NumberI = Number / 100;
                 for(int I = 0;I < 100; I++)
                 {
