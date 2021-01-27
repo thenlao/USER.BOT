@@ -191,7 +191,7 @@ namespace USER.BOT
                         
                         while(CapthaEnter == false)
                         {
-                            answerConsole = AnswER + "Нужно ввести капчу           ";
+                            answerConsole ="Нужно ввести капчу           ";
                             textBox4.Text += answerConsole;
                             for (int I = 0;I<10;I++)
                             {
@@ -205,8 +205,10 @@ namespace USER.BOT
                                 }
                             }
                         }
-                        string RequEST = "https://api.vk.com/method/wall.createComment?" + "owner_id=" + ug.response[0].id.ToString() + "&post_id=" + item.id + "&message=" + textBox2.Text + "&captcha_sid=" + er.error.captcha_sid + "&captha_key=" + textBox1.Text + "&" + access_token + "&v=5.124";
-
+                        if(CapthaEnter == true)
+                        {
+                            string RequEST = "https://api.vk.com/method/wall.createComment?" + "owner_id=" + ug.response[0].id.ToString() + "&post_id=" + item.id + "&message=" + textBox2.Text + "&captcha_sid=" + er.error.captcha_sid + "&captha_key=" + textBox1.Text + "&" + access_token + "&v=5.124";
+                        }
 
                     }
 
@@ -225,8 +227,8 @@ namespace USER.BOT
                     {
                         // label12.Text = AnswER;
                         int NumberFC = rnd.Next(15000, 20000);
-                        answerConsole = NumberFC.ToString() + "           ";
-                        textBox4.Text = answerConsole;
+                        answerConsole = "Нужно ждать миллисекунд           " + NumberFC.ToString();
+                        textBox4.Text += answerConsole;
                         //textBox4.Text += " " + NumberFC.ToString();
                         int NumberFCI = NumberFC / 100;
                        for(int I = 0;I < 100; I++)
@@ -314,21 +316,8 @@ namespace USER.BOT
         private void button2_Click_1(object sender, EventArgs e)
         {
             CapthaEnter = true;
-            for(int I = 0; I < 10; I++)
-            {
-                Thread.Sleep(200);
-                
-            }
             CapthaEnter = false;
 
-            if (CapthaEnter == true)
-            {
-                label3.Text = "CapthaEnter - true";
-            }
-            else
-            {
-                label3.Text = "CapthaEnter - false";
-            }
 
 
 
@@ -396,6 +385,11 @@ private void textBox3_TextChanged(object sender, EventArgs e)
             //int tm = 1000;
             //button6.Text = (tm+1000).ToString();
             //button7.Text = tm.ToString();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
